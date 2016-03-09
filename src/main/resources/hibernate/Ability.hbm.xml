@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.kapeks.web.model.Ability" table="abilities">
+		<meta attribute="class-description">
+			This class has the information for the abilities.
+		</meta>
+
+		<id name="id" type="int" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="name" column="name" type="string" />
+		<property name="creator" column="creator" type="string" />
+		<property name="lastChange" column="last_change" type="string" />
+		<property name="difficulty" column="difficulty" type="int" />
+		<property name="type" column="type" type="string" />
+		<property name="description" column="description" type="string" />
+
+		<map name="effects" cascade="all">
+			<key column="ability_id" />
+			<index column="level" type="string" />
+			<one-to-many class="com.kapeks.web.model.Effect" />
+		</map>
+	</class>
+</hibernate-mapping>

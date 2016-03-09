@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.kapeks.web.model.Effect" table="effects">
+		<meta attribute="class-description">
+			This class has the information for the airports.
+		</meta>
+
+		<id name="id" type="int" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="level" column="level" type="string" />
+		<property name="cost" column="cost" type="int" />
+		<property name="description" column="description" type="string" />
+	</class>
+</hibernate-mapping>

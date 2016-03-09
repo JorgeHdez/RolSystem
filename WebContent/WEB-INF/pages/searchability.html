@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="ISO-8859-1"></meta>
+<title>Sistema de rol - Search Ability</title>
+<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="resources/css/mainApp.css" rel="stylesheet" />
+</head>
+<body ng-app="abilitiesApp">
+	<div class="container" ng-include="'menu'"></div>
+	<div ng-controller="SearchAbility" data-ng-init="loadAbilities()"
+		class="col-md-4 col-md-offset-4">
+		<div class="form-group">
+			<label class="sr-only" for="exampleInputAmount">Amount (in
+				dollars)</label>
+			<div class="input-group">
+				<div class="input-group-addon">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</div>
+				<input class="form-control" ng-model="search" type="text"
+					placeholder="Nombre de habilidad" />
+			</div>
+		</div>
+		{{abilities.length}} Habilidades
+		<div class="ui divider"></div>
+		<div
+			ng-repeat="ability in abilities | filter:{name: search} | limitTo: 10"
+			class="well has-corners {{ability.type}}">
+			<h3>
+				<a ng-click="openAbility(ability)"
+					class="corner top left label label-default">{{ability.name}}</a>
+			</h3>
+			<h4>
+				<a ng-click="removeAbility(ability)"
+					class="corner top right label label-danger">X</a>
+			</h4>
+			<h6>
+				<i class="title">Creada por <b>{{ability.creator}}</b></i>
+			</h6>
+			<h6>
+				<p><b>D.D.:</b> {{ability.difficulty == 0 ? 'Inf' : ability.difficulty}}</p>
+			</h6>
+			<div class="description">
+				<p>{{ability.description}}</p>
+			</div>
+			<div class="corner bottom left label label-default">{{ability.type}}</div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="resources/js/mainApp.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

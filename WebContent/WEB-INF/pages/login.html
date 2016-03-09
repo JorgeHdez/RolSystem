@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"
+	charset="ISO-8859-1"></meta>
+<title>Sistema de rol - Login</title>
+<style>
+</style>
+<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 well">
+				<legend>Conéctate</legend>
+				<div class="alert alert-info" th:if="${msg}">
+					<a class="close" data-dismiss="alert" href="#">×</a><span
+						th:text="${msg}"></span>
+				</div>
+				<div class="alert alert-danger" th:if="${error}">
+					<a class="close" data-dismiss="alert" href="#">×</a><span
+						th:text="${error}"></span>
+				</div>
+				<form method="POST" action="login_check" accept-charset="UTF-8">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-user"></i>
+							</span> <input type="text" id="username" class="span4 form-control"
+								name="username" placeholder="Usuario" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-lock"></i>
+							</span> <input type="password" id="password" class="span4 form-control"
+								name="password" placeholder="Contraseña" />
+						</div>
+					</div>
+					<button type="submit" name="submit" class="btn btn-info btn-block">Conectarse</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
