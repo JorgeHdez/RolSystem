@@ -20,7 +20,7 @@ public class SecurityController {
 		return "login";
 	}
 
-	@RequestMapping(value = { "/denied" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/denegado" }, method = RequestMethod.GET)
 	public String denied() {
 		return "denied";
 	}

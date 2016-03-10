@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/login", "/denied", "/resources/**");
+		web.ignoring().antMatchers("/login", "/resources/**");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.access("hasRole('ROLE_USER')").and().formLogin().defaultSuccessUrl("/buscar", true)
 				.loginProcessingUrl("/login_check").loginPage("/login").failureUrl("/login?error").and().logout()
 				.logoutSuccessUrl("/login?logout").and().csrf().disable().exceptionHandling()
-				.accessDeniedPage("/denied");
+				.accessDeniedPage("/denegado");
 	}
 
 	@Bean
