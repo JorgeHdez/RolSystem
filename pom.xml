@@ -33,7 +33,7 @@
 						<format>xml</format>
 					</formats>
 					<instrumentation>
-						<ignoreTrivial>true</ignoreTrivial>	
+						<ignoreTrivial>true</ignoreTrivial>
 						<ignores>
 							<ignore>com.kapeks.config.*</ignore>
 							<ignore>com.kapeks.security.config.*</ignore>
@@ -157,6 +157,12 @@
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
 			<version>3.3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
