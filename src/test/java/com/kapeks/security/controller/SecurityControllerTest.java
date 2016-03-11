@@ -48,7 +48,7 @@ public class SecurityControllerTest extends EasyMockSupport {
 		mockMvc.perform(get("/login").param("logout", "logout")).andExpect(status().isOk())
 				.andExpect(view().name("login")).andExpect(model().attribute("msg", "Te has desconectado"));
 	}
-	
+
 	@Test
 	public void deniedTest() throws Exception {
 		mockMvc.perform(get("/denegado")).andExpect(status().isOk()).andExpect(view().name("denied"));

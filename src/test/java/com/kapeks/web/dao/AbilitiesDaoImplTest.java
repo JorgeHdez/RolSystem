@@ -1,7 +1,8 @@
 package com.kapeks.web.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import org.easymock.TestSubject;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class AbilitiesDaoImplTest {
@@ -12,22 +13,18 @@ public class AbilitiesDaoImplTest {
 	public void getAbilityTest() {
 	}
 
-	@Ignore
 	@Test
 	public void createAbilityTest() {
 	}
 
-	@Ignore
 	@Test
 	public void updateAbilityTest() {
 	}
 
-	@Ignore
 	@Test
 	public void deleteAbilityTest() {
 	}
 	
-	@Ignore
 	@Test
 	public void getAbilitiesTest() {
 	}

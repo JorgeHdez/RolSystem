@@ -25,24 +25,24 @@ public class MainController {
 		return "redirect:buscar";
 	}
 
-	@RequestMapping(value = { "menu" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/menu" }, method = RequestMethod.GET)
 	public String menu() {
 		return "menu";
 	}
 
-	@RequestMapping(value = { "buscar" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/buscar" }, method = RequestMethod.GET)
 	public String buscar() {
 		return "searchability";
 	}
 
-	@RequestMapping(value = { "crear" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/crear" }, method = RequestMethod.GET)
 	public String crear() {
 		return "createability";
 	}
 
-	@RequestMapping(value = { "abilities" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/abilities" }, method = RequestMethod.POST)
 	@ResponseBody
 	public List<Ability> abilities() {
-		return abilitiesService.getAbilities(null, 2);
+		return abilitiesService.getAbilities(null, 10);
 	}
 }
