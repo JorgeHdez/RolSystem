@@ -11,6 +11,8 @@ public class AbilitiesDaoImplTest {
 	
 	@Test
 	public void getAbilityTest() {
+		assertEquals("Get existing ability", "Testington", abilitiesDao.getAbility(2).getName());
+		assertEquals("Ability don't exists", null, abilitiesDao.getAbility(0));
 	}
 
 	@Test
