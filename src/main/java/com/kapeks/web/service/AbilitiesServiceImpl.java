@@ -10,7 +10,7 @@ import com.kapeks.web.model.Ability;
 
 @Service
 public class AbilitiesServiceImpl implements AbilitiesService {
-	AbilitiesDao abilitiesDao;
+	private AbilitiesDao abilitiesDao;
 
 	@Autowired
 	public AbilitiesServiceImpl(AbilitiesDao abilitiesDao) {

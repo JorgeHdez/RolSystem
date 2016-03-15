@@ -28,29 +28,28 @@ public class SecurityControllerTest extends EasyMockSupport {
 
 	@Before
 	public void setUp() throws Exception {
-		mockMvc = standaloneSetup(securityController).setSingleView(mockView).build();
+		mockMvc = standaloneSetup(securityController).setSingleView(mockView).alwaysExpect(status().isOk()).build();
 	}
 
 	@Test
 	public void loginPageSimpleTest() throws Exception {
-		mockMvc.perform(get("/login")).andExpect(status().isOk()).andExpect(view().name("login"));
+		mockMvc.perform(get("/login")).andExpect(view().name("login"));
 	}
 
 	@Test
 	public void loginUserPassErrorTest() throws Exception {
-		mockMvc.perform(get("/login").param("error", "error")).andExpect(status().isOk())
-				.andExpect(view().name("login"))
+		mockMvc.perform(get("/login").param("error", "error")).andExpect(view().name("login"))
 				.andExpect(model().attribute("error", "Usuario o contraseña incorrectos"));
 	}
 
 	@Test
 	public void logoutTest() throws Exception {
-		mockMvc.perform(get("/login").param("logout", "logout")).andExpect(status().isOk())
-				.andExpect(view().name("login")).andExpect(model().attribute("msg", "Te has desconectado"));
+		mockMvc.perform(get("/login").param("logout", "logout")).andExpect(view().name("login"))
+				.andExpect(model().attribute("msg", "Te has desconectado"));
 	}
 
 	@Test
 	public void deniedTest() throws Exception {
-		mockMvc.perform(get("/denegado")).andExpect(status().isOk()).andExpect(view().name("denied"));
+		mockMvc.perform(get("/denegado")).andExpect(view().name("denied"));
 	}
 }

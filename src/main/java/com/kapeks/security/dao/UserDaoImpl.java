@@ -36,4 +36,25 @@ public class UserDaoImpl implements UserDao {
 
 		return null;
 	}
+
+	@Override
+	public void addUser(AppUser user) {
+		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(user);
+		transaction.commit();
+		session.close();
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		AppUser user = session.load(AppUser.class, id);
+		if (user != null) {
+			session.delete(user);
+		}
+		transaction.commit();
+		session.close();
+	}
 }
