@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.easymock.TestSubject;
 import org.junit.Test;
 
-
 public class UserDaoImplTest {
 	@TestSubject
 	private final UserDao userDao = new UserDaoImpl();

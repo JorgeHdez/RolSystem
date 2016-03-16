@@ -13,7 +13,8 @@
 		<property name="enabled" type="boolean">
 			<column name="enabled" not-null="true" />
 		</property>
-		<set name="userRoles" table="user_roles" inverse="true" fetch="select">
+		<set name="userRoles" 
+			cascade="all">
 			<key>
 				<column name="username" length="45" not-null="true" />
 			</key>

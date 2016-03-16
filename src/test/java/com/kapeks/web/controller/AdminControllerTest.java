@@ -11,8 +11,6 @@ import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.View;
 
-import com.kapeks.security.model.AppUser;
-import com.kapeks.test.TestUtil;
 import com.kapeks.web.service.UserService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -46,25 +44,28 @@ public class AdminControllerTest extends EasyMockSupport {
 
 	@Test
 	public void addUserSuccessPostTest() throws Exception {
-		AppUser user = new AppUser();
-		user.setUsername("DummyUser");
-		user.setEnabled(true);
-
-		mockUserService.addUser(user);
+		mockUserService.addUser("dummy", "wololo", true);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mockUserService);
 
-		mockMvc.perform(post("/admin/nuevo-usuario").contentType(TestUtil.APPLICATION_JSON_UTF8)
-				.content(TestUtil.convertObjectToJsonBytes(user))).andExpect(view().name("newuser"))
+		mockMvc.perform(post("/admin/nuevo-usuario").param("username", "dummy").param("password", "wololo")
+				.param("confirm", "wololo").param("admin", "on")).andExpect(view().name("newuser"))
 				.andExpect(model().attribute("msg", "Usuario registrado"));
 
 		EasyMock.verify(mockUserService);
 	}
 
 	@Test
+	public void addUserWrongPostTest() throws Exception {
+		mockMvc.perform(post("/admin/nuevo-usuario").param("username", "dummy").param("password", "wololos")
+				.param("confrim", "wololo").param("admin", "on")).andExpect(view().name("newuser"))
+				.andExpect(model().attribute("error", "Las contraseñas no son iguales"));
+	}
+	
+	@Test
 	public void addUserFailurePostTest() throws Exception {
-		mockMvc.perform(post("/admin/nuevo-usuario").contentType(TestUtil.APPLICATION_JSON_UTF8)
-				.content(TestUtil.convertObjectToJsonBytes(null))).andExpect(view().name("newuser"))
+		mockMvc.perform(post("/admin/nuevo-usuario").param("username", "").param("password", "wololos")
+				.param("confrim", "wololo").param("admin", "on")).andExpect(view().name("newuser"))
 				.andExpect(model().attribute("error", "No se pudo crear el usuario"));
 	}
 }

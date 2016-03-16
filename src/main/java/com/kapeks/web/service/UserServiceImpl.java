@@ -20,9 +20,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUser(AppUser user) throws NoSuchAlgorithmException {
-		user.setPassword(AppUtil.hashMD5(user.getPassword()));
-		userDao.addUser(user);
+	public void addUser(String username, String password, boolean admin) throws NoSuchAlgorithmException {
+		if (userDao.getUser(username) == null) {
+			AppUser user = new AppUser(admin);
+			user.setUsername(username);
+			user.setPassword(AppUtil.hashMD5(password));
+			user.setEnabled(true);
+			userDao.addUser(user);
+		}
 	}
 
 	@Override

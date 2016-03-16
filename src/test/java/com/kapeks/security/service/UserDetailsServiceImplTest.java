@@ -2,9 +2,6 @@ package com.kapeks.security.service;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.easymock.EasyMock;
 import org.easymock.EasyMockRule;
 import org.easymock.EasyMockSupport;
@@ -16,7 +13,6 @@ import org.springframework.security.core.userdetails.User;
 
 import com.kapeks.security.dao.UserDao;
 import com.kapeks.security.model.AppUser;
-import com.kapeks.security.model.UserRole;
 
 public class UserDetailsServiceImplTest extends EasyMockSupport {
 	@Rule
@@ -30,16 +26,10 @@ public class UserDetailsServiceImplTest extends EasyMockSupport {
 
 	@Test
 	public void loadUserByUsernameTest() {
-		UserRole role = new UserRole();
-		role.setId(1);
-		role.setRole("ROLE_USER");
-		Set<UserRole> userRoles = new HashSet<UserRole>();
-		userRoles.add(role);
-		AppUser user = new AppUser();
+		AppUser user = new AppUser(false);
 		user.setEnabled(true);
 		user.setUsername("DazelHirae");
 		user.setPassword("b2456aade42790ff28bcda05af0b2a47");
-		user.setUserRoles(userRoles);
 
 		EasyMock.expect(userDaoMock.getUser("DazelHirae")).andReturn(user);
 		EasyMock.expect(userDaoMock.getUser("jhernan")).andReturn(null);

@@ -9,6 +9,21 @@ public class AppUser {
 	private boolean enabled;
 	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
+	public AppUser() {
+	}
+
+	public AppUser(boolean admin) {
+		UserRole userRole = new UserRole();
+		userRole.setRole("ROLE_USER");
+		userRoles.add(userRole);
+
+		if (admin) {
+			userRole = new UserRole();
+			userRole.setRole("ROLE_ADMIN");
+			userRoles.add(userRole);
+		}
+	}
+
 	public String getUsername() {
 		return username;
 	}
